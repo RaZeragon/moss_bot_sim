@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="moss_bot" xmlns:xacro="http://ros.org/wiki/xacro">
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+
+  <link name="base_link">
+  </link>
+
+  <link
+    name="chassis">
+    <inertial>
+      <origin
+        xyz="-0.00103749030591196 0.0194066336453528 -0.142976007690673"
+        rpy="0 0 0" />
+      <mass
+        value="1.5696761954861" />
+      <inertia
+        ixx="0.00770869554824896"
+        ixy="6.32715003435383E-06"
+        ixz="-9.78018093419617E-05"
+        iyy="0.0152795405278708"
+        iyz="-5.60185465803943E-05"
+        izz="0.00807559595588393" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///$(find drone_description)/meshes/dronev4/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///$(find drone_description)/meshes/dronev4/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="chassis"/>
+  </joint>
+
+  <link
+    name="left_wheel">
+    <inertial>
+      <origin
+        xyz="-0.0167008021462844 -6.14550641332701E-05 0.000790217368505477"
+        rpy="0 0 0" />
+      <mass
+        value="0.039416993023242" />
+      <inertia
+        ixx="4.65665430589552E-05"
+        ixy="1.39028084407786E-10"
+        ixz="-1.07377430067167E-10"
+        iyy="2.36178454866054E-05"
+        iyz="-2.45793300882201E-12"
+        izz="2.36178443396775E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///$(find drone_description)/meshes/dronev4/left_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///$(find drone_description)/meshes/dronev4/left_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="-0.084 0.060004 0.029996"
+      rpy="0.25279 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="left_wheel" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+
+  <link
+    name="right_wheel">
+    <inertial>
+      <origin
+        xyz="0.0167008020435532 -2.99490744704034E-08 -1.64070603013433E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.0394169932557089" />
+      <inertia
+        ixx="4.65665430607275E-05"
+        ixy="-3.21699920762843E-11"
+        ixz="-1.72696361853544E-10"
+        iyy="2.36178425346664E-05"
+        iyz="8.46460880870787E-13"
+        izz="2.36178472904368E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///$(find drone_description)/meshes/dronev4/right_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///$(find drone_description)/meshes/dronev4/right_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="0.084 0.059996 0.029996"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="right_wheel" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  
+</robot>

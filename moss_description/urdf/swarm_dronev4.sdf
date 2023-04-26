@@ -1,0 +1,234 @@
+<?xml version ='1.0'?>
+
+<sdf version='1.7'>
+  <model name='dronev4'>
+
+    <static>false</static>
+      <link name='fake_link'>
+      </link>
+
+      <!--Base Link-->
+      <link name='base_link'>
+        <inertial>
+          <pose>0 0.127 0.01 0 0 0</pose>
+          <mass>1.56968</mass>
+          <!--switched iyy and izz-->
+          <inertia>
+            <ixx>0.0077087</ixx>
+            <ixy>6.32715e-06</ixy>
+            <ixz>-9.78018e-05</ixz>
+            <iyy>0.0080756</iyy>
+            <iyz>-5.60185e-05</iyz>
+            <izz>0.0152795</izz>
+          </inertia>
+        </inertial>
+
+        <collision name='base_link_collision'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:////home/razeragon/swarm_test/install/drone_description/share/drone_description/meshes/dronev4/base_link.STL</uri>
+            </mesh>
+          </geometry>
+        </collision>
+
+        <visual name='base_link_visual'>
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:////home/razeragon/swarm_test/install/drone_description/share/drone_description/meshes/dronev4/base_link.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+
+        <sensor name="intel_realsense_r200_rgb" type="camera">
+          <always_on>true</always_on>
+          <visualize>true</visualize>
+          <update_rate>1</update_rate>
+          <pose>0.0 0.0 0.25 0 0 1.571</pose>
+          <camera name="realsense_rgb_camera">
+            <horizontal_fov>1.02974</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>480</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.02</near>
+              <far>300</far>
+            </clip>
+            <save enabled = "false">
+              <path>
+                image_dump/
+              </path>
+            </save>
+            <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+          </camera>
+        
+          <plugin name="intel_realsense_r200_rgb_driver" filename="libgazebo_ros_camera.so">
+            <ros>
+              <namespace>/drone</namespace>
+              <remapping>image_raw:=custom_image</remapping>
+              <remapping>camera_info:=custom_info_raw</remapping> 
+            </ros>
+            <camera_name>intel_realsense_r200_rgb</camera_name>
+            <frame_name>realsense_rgb_frame</frame_name>
+            <hack_baseline>0.07</hack_baseline>
+          </plugin>
+        </sensor>
+      </link>
+
+      <joint name='base_joint' type='fixed'>
+        <parent>fake_link</parent>
+        <child>base_link</child>
+      </joint>
+
+      <!--Left Wheel Joint-->
+      <joint name='left_wheel_joint' type='revolute'>
+        <pose relative_to='base_link'>-0.084 0.060004 0.029996 0.25279 -0 0</pose>
+        <parent>base_link</parent>
+        <child>left_wheel</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      
+
+      <!--Left Wheel-->
+      <link name='left_wheel'>
+        <pose relative_to='left_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>-0.016701 -6.1e-05 0.00079 0 -0 0</pose>
+          <mass>0.039417</mass>
+          <inertia>
+            <ixx>4.65665e-05</ixx>
+            <ixy>1.39028e-10</ixy>
+            <ixz>-1.07377e-10</ixz>
+            <iyy>2.36178e-05</iyy>
+            <iyz>-2.45793e-12</iyz>
+            <izz>2.36178e-05</izz>
+          </inertia>
+        </inertial>
+
+        <collision name='left_wheel_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:////home/razeragon/swarm_test/install/drone_description/share/drone_description/meshes/dronev4/left_wheel.STL</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        
+        <visual name='left_wheel_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:////home/razeragon/swarm_test/install/drone_description/share/drone_description/meshes/dronev4/left_wheel.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+      
+
+      <!--Right Wheel Joint-->
+      <joint name='right_wheel_joint' type='revolute'>
+        <pose relative_to='base_link'>0.084 0.059996 0.029996 1.5708 -0 0</pose>
+        <parent>base_link</parent>
+        <child>right_wheel</child>
+        <axis>
+          <xyz>1 0 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      
+
+      <!--Right Wheel-->
+      <link name='right_wheel'>
+        <pose relative_to='right_wheel_joint'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0.016701 -0 -0 0 -0 0</pose>
+          <mass>0.039417</mass>
+          <inertia>
+            <ixx>4.65665e-05</ixx>
+            <ixy>-3.217e-11</ixy>
+            <ixz>-1.72696e-10</ixz>
+            <iyy>2.36178e-05</iyy>
+            <iyz>8.46461e-13</iyz>
+            <izz>2.36178e-05</izz>
+          </inertia>
+        </inertial>
+
+        <collision name='right_wheel_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:////home/razeragon/swarm_test/install/drone_description/share/drone_description/meshes/dronev4/right_wheel.STL</uri>
+            </mesh>
+          </geometry>
+        </collision>
+
+        <visual name='right_wheel_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>file:////home/razeragon/swarm_test/install/drone_description/share/drone_description/meshes/dronev4/right_wheel.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+
+      <!-- Control the Drone -->
+      <plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
+        <ros>
+          <namespace>/drone</namespace>
+          <remapping>cmd_vel:=cmd_vel</remapping>
+          <remapping>odom:=odom</remapping>
+        </ros>
+
+        <!-- wheels -->
+        <left_joint>left_wheel_joint</left_joint>
+        <right_joint>right_wheel_joint</right_joint>
+
+        <!-- kinematics -->
+        <wheel_separation>0.198</wheel_separation>
+        <wheel_diameter>0.09</wheel_diameter>
+
+        <!-- limits -->
+        <max_wheel_torque>20</max_wheel_torque>
+        <max_wheel_acceleration>1.0</max_wheel_acceleration>
+
+        <!-- output -->
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+        <publish_wheel_tf>true</publish_wheel_tf>
+
+        <odometry_frame>odom</odometry_frame>
+        <robot_base_frame>base_link</robot_base_frame>
+      </plugin>
+  </model>
+</sdf>
