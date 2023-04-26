@@ -31,24 +31,24 @@ import numpy as np
 class Estimator(Node):
     def __init__(self, robot_name = '', robot_namespace = ''):
   
-      super().__init__('Estimator')
+        super().__init__('Estimator')
 
-      self.robot_name = robot_name
-      self.robot_namespace = robot_namespace 
+        self.robot_name = robot_name
+        self.robot_namespace = robot_namespace 
   
-      self.odom_subscriber = self.create_subscription(
+        self.odom_subscriber = self.create_subscription(
                             Odometry,
                             '/' + self.robot_name + '/odom',
                             self.odom_callback,
                             10)
 
-      self.velocity_subscriber = self.create_subscription(
+        self.velocity_subscriber = self.create_subscription(
                                 Twist,
                                 '/' + self.robot_name + '/cmd_vel',
                                 self.velocity_callback,
                                 10)
   
-      self.publisher_state_est = self.create_publisher(
+        self.publisher_state_est = self.create_publisher(
                                 Float32MultiArray, 
                                 '/' + self.robot_name + '/state_est', 
                                 10)
