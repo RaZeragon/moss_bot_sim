@@ -23,11 +23,11 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'robot_corner = moss_control.corner:main',
-            'robot_estimator = moss_control.estimator:main',
-            'robot_square = moss_control.swarm_square:main',
-            'robot_vote = moss_control.voter:main',
-            'robot_movement = moss_control.movement:main'
+            'gazebo_corner = moss_control.gazebo_corner:main',
+            'gazebo_estimator = moss_control.gazebo_estimator:main',
+            'gazebo_square = moss_control.gazebo_swarm_square:main',
+            'gazebo_vote = moss_control.gazebo_voter:main',
+            'gazebo_movement = moss_control.gazebo_movement:main'
         ],
     },
 )

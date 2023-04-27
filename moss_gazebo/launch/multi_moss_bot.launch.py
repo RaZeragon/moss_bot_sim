@@ -32,7 +32,7 @@ def generate_launch_description():
 
     spawn_robot_control = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(pkg_moss_control, 'launch', 'controller.launch.py')
+            os.path.join(pkg_moss_control, 'launch', 'gazebo_controller.launch.py')
         )
     )     
 

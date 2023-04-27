@@ -12,16 +12,19 @@ class Square(Node):
     def __init__(self, robot_name = '', robot_namespace = '', swarm_amount = '', square_size = ''):
         super().__init__('Square')
 
+        # Passing arguments from launch command into the class
         self.robot_name = robot_name
         self.robot_namespace = robot_namespace
         self.robot_id = int(self.robot_name.split("moss_bot")[1])
         self.swarm_amount = int(swarm_amount)
         self.square_size = float(square_size)
 
-        self.positions_message = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        # Initializing some arrays
+        self.positions_message = [0.0] * (2 * swarm_amount)
         self.positions_pair = [[0.0, 0.0], [0.0, 0.0], [0.0, 0.0], [0.0, 0.0]]
-        self.square_coords = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        self.square_coords = [0.0] * ((2 * swarm_amount) + 3)
 
+        # Subscribes to every swarm robot's topic
         for i in range(self.swarm_amount):
             self.state_est_subscriber = self.create_subscription(
                                 Float32MultiArray,
@@ -37,9 +40,18 @@ class Square(Node):
     
     def state_est_callback(self, msg, index):
         current_state = msg.data
+
+        # Parses through the /moss_bot#/state_est data
+        # [0] Current Robot's x position
+        # [1] Current Robot's y position
+        # [2] Current Robot's yaw angle (radians) -pi to pi
+
+        # Inserts each robot's xy coords into a list
+        # [[moss_bot0_x, moss_bot0,y], [moss_bot1_x, moss_bot1_y], ...]
         self.positions_pair[index][0] = current_state[0]
         self.positions_pair[index][1] = current_state[1]
 
+        # Inserts the current robot's x, y, and yaw to the end of the square_coords message
         if index == self.robot_id:
             self.square_coords[8] = current_state[0]
             self.square_coords[9] = current_state[1]
@@ -48,10 +60,14 @@ class Square(Node):
         self.centroid()
 
     def centroid(self):
+        # Calculates the xy centroid based on all the robots' positions
+        # This centroid will be used as the center of the square
         self.centroid_x = (self.positions_pair[0][0] + self.positions_pair[1][0] + self.positions_pair[2][0] + self.positions_pair[3][0]) / 4
         self.centroid_y = (self.positions_pair[0][1] + self.positions_pair[1][1] + self.positions_pair[2][1] + self.positions_pair[3][1]) / 4
         self.centroid_position = [self.centroid_x, self.centroid_y]
 
+        # Given the square size, find the robot that's the closest to half 
+        # of the square's diagonal from the centroid (starting_point)
         self.minimum_distance = 100
         self.starting_point = []
         for pair in self.positions_pair:
@@ -62,14 +78,20 @@ class Square(Node):
         self.create_square_coords()
 
     def create_square_coords(self):
+        # Calculate the angle from the centroid to the starting_point
         self.angle_rad = math.atan2(self.starting_point[1] - self.centroid_position[1], self.starting_point[0] - self.centroid_position[0])
         self.angle_deg = math.degrees(self.angle_rad)
 
+        # Generate the first corner of the square (square_initial_coords)
         self.square_initial_x = (math.cos(self.angle_rad) * (self.square_size / 2)) + self.centroid_position[0]
         self.square_initial_y = (math.sin(self.angle_rad) * (self.square_size / 2)) + self.centroid_position[1]
 
         self.square_initial_coords = [self.square_initial_x, self.square_initial_y]
 
+        # Calculating the rest of the square corners by adding or subtracting
+        # the square length based on the initial corner's position in relation
+        # to the centroid. Essentially, this ensures that the rest of the corners
+        # will be positioned around the centroid. This data is then published
         self.square_coords[0] = self.square_initial_x
         self.square_coords[1] = self.square_initial_y
         self.square_coords[2] = self.square_initial_x
@@ -105,6 +127,7 @@ class Square(Node):
         self.square_coords_publisher.publish(msg)
 
 def main(args=None):
+    # Initialize rclpy library
     rclpy.init(args=args)
 
     parser = argparse.ArgumentParser(description='Spawn robot amount')

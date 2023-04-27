@@ -9,9 +9,11 @@ def generate_launch_description():
     return LaunchDescription([
         launch_ros.actions.Node(
             package='moss_control',
-            executable='robot_estimator',
+            executable='gazebo_square',
             output='screen',
             arguments=[
                 '--robot_name', launch.substitutions.LaunchConfiguration('robot_name'),
-                '--robot_namespace', launch.substitutions.LaunchConfiguration('robot_namespace')]),
+                '--robot_namespace', launch.substitutions.LaunchConfiguration('robot_namespace'),
+                '--swarm_amount', launch.substitutions.LaunchConfiguration('swarm_amount'),
+                '--square_size', launch.substitutions.LaunchConfiguration('square_size')]),
     ])

@@ -18,7 +18,7 @@ from ament_index_python.packages import get_package_share_directory, get_package
 def generate_launch_description():
     # Set the path to different files and folders.
     pkg_moss_description = get_package_share_directory('moss_description')
-    default_urdf_model_path = os.path.join(pkg_moss_description, 'urdf/box_bot.urdf')
+    default_urdf_model_path = os.path.join(pkg_moss_description, 'urdf/moss_bot.urdf')
     default_rviz_config_path = os.path.join(pkg_moss_description, 'rviz/urdf_config.rviz')
 
     # Launch configuration variables specific to simulation

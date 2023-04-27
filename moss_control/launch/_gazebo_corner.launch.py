@@ -9,7 +9,7 @@ def generate_launch_description():
     return LaunchDescription([
         launch_ros.actions.Node(
             package='moss_control',
-            executable='robot_vote',
+            executable='gazebo_corner',
             output='screen',
             arguments=[
                 '--robot_name', launch.substitutions.LaunchConfiguration('robot_name'),

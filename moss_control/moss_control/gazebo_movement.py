@@ -13,14 +13,16 @@ from functools import partial
 class Movement(Node):
     def __init__(self, robot_name = '', robot_namespace = '', swarm_amount = ''):
         super().__init__('Movement')
-        self.first = True
 
+        # Passing arguments from launch command into the class
         self.robot_name = robot_name
         self.robot_namespace = robot_namespace
         self.robot_id = int(self.robot_name.split("moss_bot")[1])
         self.swarm_amount = int(swarm_amount)
 
+        # Initializing some variables
         self.square_coords = [0.0] * (self.swarm_amount * 2)
+        self.first = True
 
         self.corner_selection_subscriber = self.create_subscription(
                         Float32MultiArray, 
@@ -33,12 +35,22 @@ class Movement(Node):
                         '/' + self.robot_name + '/cmd_vel', 
                         10)
     
+    # Chunks a list into sublists of size n
     def chunks(self, lst, n):
         for i in range(0, len(lst), n):
             yield lst[i:i+n]
 
     def corner_selection_callback(self, msg):
         current_data = msg.data
+
+        # Parses through the /moss_bot#/square_coords data
+        # [0] Corner 0 x | [1] Corner 0 y
+        # [2] Corner 1 x | [3] Corner 1 y
+        # [4] Corner 2 x | [5] Corner 2 y
+        # [6] Corner 3 x | [7] Corner 3 y
+        # [8] Current Robot x position | [9] Current Robot y position
+        # [10] Current Robot yaw angle (radians) from -pi to pi
+        # [11] Corner_ID selection
 
         # Add failsafe to prevent square_coords containing 0.0, 0.0
         if self.first == True:
@@ -54,10 +66,14 @@ class Movement(Node):
         self.move_to_target()
 
     def move_to_target(self):
+        # Chunks the corners into sublists of 2 and then selects its
+        # target coordinates based on its chosen Corner_ID
         self.corner_paired_list = list(self.chunks(self.square_coords, 2))
         self.target_position = self.corner_paired_list[int(self.corner_selection)]
 
-        # print('ROBOT NUMBER ' + str(self.robot_id) + ' POSITION IS ' + str(self.target_position))
+        # Due to some bugs where robots would head to 0.0, 0.0
+        if self.target_position == [0.0, 0.0]:
+            self.first = True
 
         self.distance_error = 0.25
         self.angle_error = 0.25
@@ -70,16 +86,20 @@ class Movement(Node):
         msg.angular.y = 0.0
         msg.angular.z = 0.0 #yaw
 
+        # Calculating angle between the current robot's yaw and its target position
+        # Converts the -pi to pi angles to 0 to 2 * pi
         self.angle_rad = math.atan2(self.target_position[1] - self.current_y, self.target_position[0] - self.current_x)
         self.angle_rad_360 = (6.28318 - abs(self.angle_rad))
         self.current_yaw_360 = (6.28318 - abs(self.current_yaw))
 
+        # Turn robot until it is angles correctly and then move forward until its 
+        # distance to the target position is within the defined threshold
         if (math.dist(self.current_position, self.target_position)) > self.distance_error:
             if abs((self.current_yaw - self.angle_rad)) > self.angle_error:
                 msg.linear.x = 0.0
                 msg.angular.z = 0.25
 
-                # Has bug where bots get stuck vibrating between rotating each direction
+                ## Has bug where bots get stuck vibrating between rotating each direction
                 # if (abs(self.current_yaw_360 - self.angle_rad_360) > 180.0):
                 #     msg.angular.z = 0.25 * numpy.sign(self.current_yaw_360 - self.angle_rad_360)
                 # else:
