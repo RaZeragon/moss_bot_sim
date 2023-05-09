@@ -3,7 +3,7 @@
 <package format="3">
   <name>moss_description</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Description package containing RViz, meshes, and other description objects.</description>
   <maintainer email="kward3@stevens.edu">razeragon</maintainer>
   <license>TODO: License declaration</license>
 

@@ -18,7 +18,7 @@ setup(
     zip_safe=True,
     maintainer='razeragon',
     maintainer_email='kward3@stevens.edu',
-    description='TODO: Package description',
+    description='Control package for the simulation',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={

@@ -20,9 +20,9 @@ class Square(Node):
         self.square_size = float(square_size)
 
         # Initializing some arrays
-        self.positions_message = [0.0] * (2 * swarm_amount)
+        self.positions_message = [0.0] * (2 * self.swarm_amount)
         self.positions_pair = [[0.0, 0.0], [0.0, 0.0], [0.0, 0.0], [0.0, 0.0]]
-        self.square_coords = [0.0] * ((2 * swarm_amount) + 3)
+        self.square_coords = [0.0] * ((2 * self.swarm_amount) + 3)
 
         # Subscribes to every swarm robot's topic
         for i in range(self.swarm_amount):
@@ -57,7 +57,7 @@ class Square(Node):
             self.square_coords[9] = current_state[1]
             self.square_coords[10] = current_state[2]
 
-        self.centroid()
+            self.centroid()
 
     def centroid(self):
         # Calculates the xy centroid based on all the robots' positions
@@ -91,7 +91,8 @@ class Square(Node):
         # Calculating the rest of the square corners by adding or subtracting
         # the square length based on the initial corner's position in relation
         # to the centroid. Essentially, this ensures that the rest of the corners
-        # will be positioned around the centroid. This data is then published
+        # will be positioned around the centroid. This data is then published to
+        # /moss_bot#/square_coords
         self.square_coords[0] = self.square_initial_x
         self.square_coords[1] = self.square_initial_y
         self.square_coords[2] = self.square_initial_x
