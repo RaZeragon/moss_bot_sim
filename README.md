@@ -11,8 +11,7 @@
 - (2023-05-09) Updated README.md and added package descriptions
 
 ## 3. Installation
-- ### 3.1 Install [ROS2 Foxy](https://docs.ros.org/) 
-  - [Foxy](https://docs.ros.org/en/ros2_documentation/foxy/Installation.html) 
+- ### 3.1 Install [ROS2 Foxy](https://docs.ros.org/en/ros2_documentation/foxy/Installation.html) 
 
 - ### 3.2 Install [Gazebo](https://classic.gazebosim.org/tutorials?tut=install_ubuntu)  
 
