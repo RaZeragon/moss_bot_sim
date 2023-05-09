@@ -3,7 +3,7 @@
 <package format="3">
   <name>moss_msgs</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Package for custom msg descriptions.</description>
   <maintainer email="kward3@stevens.edu">razeragon</maintainer>
   <license>TODO: License declaration</license>
 
