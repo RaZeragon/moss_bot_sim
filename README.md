@@ -99,7 +99,6 @@ $ source install/setup.bash
     # set 'square_size' equal to a positive integer to determine the side length of the resultant square (default = 5)
     $ ros2 launch moss_control gazebo_voter.launch.py [square_size:=5]
     ```
-
-- ## 5. References
+## 5. References
   - [Spawning multiple robots in Gazebo with ROS2 by The Construct](https://www.theconstructsim.com/spawning-multiple-robots-in-gazebo-with-ros2/)
   - [How to Simulate a Robot Using Gazebo and ROS 2 by Automatic Addison](https://automaticaddison.com/how-to-simulate-a-robot-using-gazebo-and-ros-2/#Test_Your_ROS_2_and_Gazebo_Integration)
