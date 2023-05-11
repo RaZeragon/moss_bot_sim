@@ -11,6 +11,7 @@ def generate_launch_description():
             package='moss_control',
             executable='gazebo_estimator',
             output='screen',
+            name='estimator',
             arguments=[
                 '--robot_name', launch.substitutions.LaunchConfiguration('robot_name'),
                 '--robot_namespace', launch.substitutions.LaunchConfiguration('robot_namespace')]),

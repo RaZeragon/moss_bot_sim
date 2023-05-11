@@ -3,11 +3,12 @@ from glob import glob
 from setuptools import setup
 
 package_name = 'moss_control'
+submodule_name = 'moss_control/submodules'
 
 setup(
     name=package_name,
     version='0.0.0',
-    packages=[package_name],
+    packages=[package_name, submodule_name],
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -27,7 +28,8 @@ setup(
             'gazebo_estimator = moss_control.gazebo_estimator:main',
             'gazebo_square = moss_control.gazebo_swarm_square:main',
             'gazebo_vote = moss_control.gazebo_voter:main',
-            'gazebo_movement = moss_control.gazebo_movement:main'
+            'gazebo_movement = moss_control.gazebo_movement:main',
+            'gazebo_camera = moss_control.gazebo_camera:main'
         ],
     },
 )
