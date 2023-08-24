@@ -4,7 +4,7 @@
   <name>moss_msgs</name>
   <version>0.0.0</version>
   <description>Package for custom msg descriptions.</description>
-  <maintainer email="kward3@stevens.edu">razeragon</maintainer>
+  <maintainer email="kward2787@gmail.com">razeragon</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

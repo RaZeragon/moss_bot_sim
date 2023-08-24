@@ -1,14 +1,16 @@
-# gazebo_simulation
-
+# moss_bot_sim
 ## 1. Introduction
 
-&ensp;&ensp;&ensp;&ensp;This repository contains simulation models for the Modular Open-Source Swarm Project. The development and test environment is as follows:
-- Ubuntu 20.04 + ROS Foxy
+&ensp;&ensp;&ensp;&ensp;This repository contains simulation models for the **Modular Open-Source Swarm Project**. This project was a senior design project developed over the 2022-2023 school year for the [Stevens Institute of Technology Senior Expo](https://www.stevens.edu/stevens-innovation-expo) and was **funded/mentored by L3Harris**. Project members include **Benjamin Mirisola, Cameron Murphy, Luisa Bonfim, and Kevin Ward**. This simulation code was developed by Kevin Ward with help from references listed below. This project was awarded the **Outstanding ECE Outstanding Senior Design Award for Electrical and Computer Engineering**. For more information regarding the project, please check out the [website](https://sites.google.com/stevens.edu/cpe423site/home?authuser=1).
 
-&ensp;&ensp;&ensp;&ensp;For the repository that controls real world movement, please go to the control_system repository.
+&ensp;&ensp;&ensp;&ensp;These models attempt to simulate a decentralized swarm with the ability to create regular polygons from randomized spawn locations.
+
+&ensp;&ensp;&ensp;&ensp;The development and test environment is as follows:
+- Ubuntu 20.04 + ROS Foxy
 
 ## 2. Update History
 - (2023-05-09) Updated README.md and added package descriptions
+- (2023-08-24) Transferred from private repo and updated README.md
 
 ## 3. Installation
 - ### 3.1 Install [ROS2 Foxy](https://docs.ros.org/en/ros2_documentation/foxy/Installation.html) 
@@ -62,7 +64,7 @@
 __Reminder 1: If there are multiple people using ros2 in the current LAN, in order to avoid mutual interference, please set ROS_DOMAIN_ID__
   - [Foxy](https://docs.ros.org/en/ros2_documentation/foxy/Concepts/About-Domain-ID.html)
 
-__Reminder 2： Remember to source the environment setup script before running any applications in gazebo_simulation__
+__Reminder 2: Remember to source the environment setup script before running any applications in gazebo_simulation__
 
 ```bash
 $ cd ~/dev_ws/
@@ -88,7 +90,7 @@ $ source install/setup.bash
     ```
 
 - ### 4.4 moss_driver
-    This package is for driving the lower level hardware of the MOSS robot. This package is currently under development and may or may not be moved to the control_system repository.
+    This package is for driving the lower level hardware of the MOSS robot. This package is currently under development.
 
 - ### 4.5 moss_control
     This package is for controlling the MOSS robots and performing formation control. After launching the moss_gazebo simulation in one terminal, launch another terminal and use the following command to make the robots form a square.

@@ -4,7 +4,7 @@
   <name>moss_gazebo</name>
   <version>0.0.0</version>
   <description>Gazebo package for MOSS Project Gazebo Simulation</description>
-  <maintainer email="kward3@stevens.edu">razeragon</maintainer>
+  <maintainer email="kward2787@gmail.com">razeragon</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

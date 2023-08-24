@@ -4,7 +4,7 @@
   <name>moss_driver</name>
   <version>0.0.0</version>
   <description>Driver package for low-level drivers for simulation. Not currently being used.</description>
-  <maintainer email="kward3@stevens.edu">razeragon</maintainer>
+  <maintainer email="kward2787@gmail.com">razeragon</maintainer>
   <license>TODO: License declaration</license>
 
   <test_depend>ament_copyright</test_depend>
