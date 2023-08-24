@@ -18,9 +18,9 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='razeragon',
-    maintainer_email='kward3@stevens.edu',
+    maintainer_email='kward2787@gmail.com',
     description='Control package for the simulation',
-    license='TODO: License declaration',
+    license='Apache License 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [

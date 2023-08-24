@@ -17,9 +17,9 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='razeragon',
-    maintainer_email='kward3@stevens.edu',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    maintainer_email='kward2787@gmail.com',
+    description='Driver package for low-level drivers for simulation. Not currently being used.',
+    license='Apache License 2.0',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [

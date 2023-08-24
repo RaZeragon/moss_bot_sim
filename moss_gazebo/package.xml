@@ -5,7 +5,7 @@
   <version>0.0.0</version>
   <description>Gazebo package for MOSS Project Gazebo Simulation</description>
   <maintainer email="kward2787@gmail.com">razeragon</maintainer>
-  <license>TODO: License declaration</license>
+  <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
   
