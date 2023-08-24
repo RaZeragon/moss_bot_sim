@@ -1,7 +1,7 @@
 # moss_bot_sim
 ## 1. Introduction
 
-&ensp;&ensp;&ensp;&ensp;This repository contains simulation models for the **Modular Open-Source Swarm Project**. This project was a senior design project developed over the 2022-2023 school year for the [Stevens Institute of Technology Senior Expo](https://www.stevens.edu/stevens-innovation-expo) and was **funded/mentored by L3Harris**. Project members include **Benjamin Mirisola, Cameron Murphy, Luisa Bonfim, and Kevin Ward**. This simulation code was developed by Kevin Ward with help from references listed below. This project was awarded the **Outstanding ECE Outstanding Senior Design Award for Electrical and Computer Engineering**. For more information regarding the project, please check out the [website](https://sites.google.com/stevens.edu/cpe423site/home?authuser=1).
+&ensp;&ensp;&ensp;&ensp;This repository contains simulation models for the **Modular Open-Source Swarm Project**. This project was a senior design project developed over the 2022-2023 school year for the [Stevens Institute of Technology Senior Expo](https://www.stevens.edu/stevens-innovation-expo) and was **funded/mentored by L3Harris**. Project members include **Benjamin Mirisola, Cameron Murphy, Luisa Bonfim, and Kevin Ward**. This simulation code was developed by Kevin Ward and was based on projects completed by Automatic Addison and The Construct. This project was awarded the **Outstanding ECE Outstanding Senior Design Award for Electrical and Computer Engineering**. For more information regarding the project, please check out the [website](https://sites.google.com/stevens.edu/cpe423site/home?authuser=1).
 
 &ensp;&ensp;&ensp;&ensp;These models attempt to simulate a decentralized swarm with the ability to create regular polygons from randomized spawn locations.
 
@@ -9,8 +9,13 @@
 - Ubuntu 20.04 + ROS Foxy
 
 ## 2. Update History
-- (2023-05-09) Updated README.md and added package descriptions
-- (2023-08-24) Transferred from private repo and updated README.md
+- (2023-05-09)
+    - Updated README.md
+    - Added package descriptions
+- (2023-08-24)
+    - Transferred from private repo
+    - Added Apache 2.0 License
+    - Updated README.md introduction
 
 ## 3. Installation
 - ### 3.1 Install [ROS2 Foxy](https://docs.ros.org/en/ros2_documentation/foxy/Installation.html) 
